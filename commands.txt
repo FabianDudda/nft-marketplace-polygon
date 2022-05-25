@@ -1,0 +1,10 @@
+
+# Creating 15 acounts with 10000 ETH
+npx hardhat node
+
+# Deploy to localhost
+npx hardhat run scripts/deploy.js --network localhost
+
+# Add the output address in config.js
+export const nftaddress = "xxx";
+export const nftmarketaddress = "xxx"
