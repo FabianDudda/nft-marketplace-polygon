@@ -120,6 +120,8 @@ contract NFTMarket is ReentrancyGuard {
             "Please submit the asking price in order to complete purchase"
         );
 
+        //TODO: Add a require() which checks, if the owner is not the buyer
+
         // pay the seller the amount
         idMarketItem[itemId].seller.transfer(msg.value);
 
@@ -132,7 +134,7 @@ contract NFTMarket is ReentrancyGuard {
         payable(owner).transfer(listingPrice); // pay owner of contract the listing price
     }
 
-    /// @notice total number of items unsold on out marketplace
+    /// @notice fetch list of items unsold on the marketplace
     function fetchUnsoldMarketItems()
         public
         view

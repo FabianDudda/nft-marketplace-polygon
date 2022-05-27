@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { create as ipfsHttpClient } from "ipfs-http-client";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
-import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
-import Market from "../artifacts/contracts/NFTMarket.sol/NFTMarket.json";
-import { nftaddress, nftmarketaddress } from "../config";
 import { EtherscanProvider } from "@ethersproject/providers";
 import { ContractType } from "hardhat/internal/hardhat-network/stack-traces/model";
+
+import { create as ipfsHttpClient } from "ipfs-http-client";
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
+
+import { nftaddress, nftmarketaddress } from "../config";
+
+import NFT from "../artifacts/contracts/NFT.sol/NFT.json";
+import Market from "../artifacts/contracts/NFTMarket.sol/NFTMarket.json";
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null);
@@ -109,18 +112,14 @@ export default function CreateItem() {
         <textarea
           placeholder="Asset description"
           className="mt-2 border rounded p-4"
-          onChange={(e) =>
-            setFormInput({ ...formInput, description: e.target.value })
-          }
+          onChange={(e) => setFormInput({ ...formInput, description: e.target.value })}
         />
         <input
           placeholder="Asset Price in Eth"
           className="mt-8 border rounded p-4"
           type="number"
           //TODO: Allow only numbers in the input
-          onChange={(e) =>
-            setFormInput({ ...formInput, price: e.target.value })
-          }
+          onChange={(e) => setFormInput({ ...formInput, price: e.target.value })}
         />
         <input type="file" name="Asset" className="my-4" onChange={onChange} />
         {fileUrl && (

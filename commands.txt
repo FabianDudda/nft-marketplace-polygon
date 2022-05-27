@@ -1,9 +1,12 @@
 
-# Creating 15 acounts with 10000 ETH
+# 1 # Creating 15 acounts with 10000 ETH (starting the server)
 npx hardhat node
 
-# Deploy to localhost
+# 2.1 # Run test deploy.js to localhost (deploy contracts on hardhat)
 npx hardhat run scripts/deploy.js --network localhost
+
+# 2.2 # Run test deploy.js to mumbai testnetwork
+npx hardhat run scripts/deploy.js --network mumbai
 
 # Add the output address in config.js
 export const nftaddress = "xxx";
