@@ -15,7 +15,7 @@ contract NFTMarket is ReentrancyGuard {
 
     // listingPrice is the price the creator have to pay to put their NFT on this marketplace
     //TODO: Code a function, so that you can change the listingPrice by FrontEnd (AdminDashboard)
-    uint256 listingPrice = 0.025 ether;
+    uint256 listingPrice = 0.0000001 ether;
 
     constructor() {
         owner = payable(msg.sender);
