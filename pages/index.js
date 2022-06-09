@@ -16,10 +16,12 @@ export default function Home() {
   }, []);
 
   async function loadNFTs() {
-    // const provider = new ethers.providers.JsonRpcProvider(
-    //   "https://polygon-mumbai.infura.io/v3/14cb07dda15f4e948e4736a481de6425"
-    // );
-    const provider = new ethers.providers.JsonRpcProvider();
+    // FOR MUMBAI TESTNET:
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://polygon-mumbai.infura.io/v3/14cb07dda15f4e948e4736a481de6425"
+    );
+    // FOR LOCAL TESTNET:
+    // const provider = new ethers.providers.JsonRpcProvider();
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider);
     const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider);
     const data = await marketContract.fetchUnsoldMarketItems(); // return an array of unsold market items
