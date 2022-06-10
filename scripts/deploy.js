@@ -17,12 +17,21 @@ async function main() {
   const NFTMarket = await hre.ethers.getContractFactory("NFTMarket");
   const nftMarket = await NFTMarket.deploy();
   await nftMarket.deployed();
+  console.log("===========================================");
   console.log("NFTMarket deployed to:", nftMarket.address);
+  console.log("===========================================");
 
   const NFT = await hre.ethers.getContractFactory("NFT");
   const nft = await NFT.deploy(nftMarket.address);
   await nft.deployed();
+  console.log("===========================================");
   console.log("NFT deployed to:", nft.address);
+  console.log("===========================================");
+
+  console.log("===========================================");
+  console.log("1) DON'T FORGET TO COPY AND PASTE THESE ADDRESSES IN config.js!");
+  console.log("2) DON'T FORGET TO RERUN 'npm run dev'");
+  console.log("===========================================");
 }
 
 // We recommend this pattern to be able to use async/await everywhere
