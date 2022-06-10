@@ -19,9 +19,11 @@ export default function CreateItem() {
   const [formInput, setFormInput] = useState({
     name: "",
     description: "",
+    numberOfTickets: 0,
     price: "",
   });
   const router = useRouter();
+  const { name, description, numberOfTickets, price } = formInput; // get the value from the form input
 
   async function onChange(e) {
     const file = e.target.files[0];
@@ -42,15 +44,17 @@ export default function CreateItem() {
   // (2) Create Token and
   // (3) Create MarketItem to list it on the market
   async function createItem() {
-    const hash = await saveTicketToIpfs(); // (1) Save Ticket MetaData to IPFS
-    const url = `https://ipfs.infura.io/ipfs/${hash}`;
+    for (let i = 0; i < numberOfTickets; i++) {
+      const hash = await saveTicketToIpfs(); // (1) Save Ticket MetaData to IPFS
+      const url = `https://ipfs.infura.io/ipfs/${hash}`;
 
-    await createSale(url); // (2) Create Token and (3) Create MarketItem to list it on the market
+      await createSale(url); // (2) Create Token and (3) Create MarketItem to list it on the market
+      console.log("Token/Ticket minted/created! Number: " + i);
+    }
     router.push("/");
   }
 
   async function saveTicketToIpfs() {
-    const { name, description, price } = formInput; // get the value from the form input
     // form validation
     if (!name || !description || !price || !fileUrl) {
       return;
@@ -121,6 +125,12 @@ export default function CreateItem() {
           placeholder="Asset description"
           className="mt-2 border rounded p-4"
           onChange={(e) => setFormInput({ ...formInput, description: e.target.value })}
+        />
+        <input
+          placeholder="Number of Tickets"
+          className="mt-8 border rounded p-4"
+          type="number"
+          onChange={(e) => setFormInput({ ...formInput, numberOfTickets: e.target.value })}
         />
         <input
           placeholder="Asset Price in Eth"
